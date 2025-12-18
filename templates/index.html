@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+        <!-- Welcome section -->
+        <div class="card border-0 shadow-lg mb-4">
+            <div class="card-body text-center py-5">
+                <div class="mb-4">
+                    
+                </div>
+                <h1 class="display-5 fw-bold mb-3" style="color: #1a365d;">
+                    Refugee Verification Portal
+                </h1>
+                <p class="lead mb-4" style="color: #4a5568;">
+                    Official System For Verifying Refugee Status Before Issuance of NSSF Numbers.
+                </p>
+                <div class="alert alert-info border-success-light">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Both Ugandans and Foreigners/Refugees are eligible to register for NSSF.
+                    The employee’s contribution amounts to 5 of their monthly wage, while the employer’s contribution amounts to 10 of the employee’s monthly wage. 
+                    This new law allows for midterm access of members’ benefits, 
+                    with up to 20 Ugandans aged 45 years and above qualifying for up to 20 of their NSSF savings.
+
+                    The Fund covers all employers, irrespective of the number of employees between 16 and 55 years of age, 
+                    except for those under the Government Pensions scheme. Employers are obliged to remit contributions to the
+                     Fund for their employees every month. Members can opt to receive payments if they reach the age of 50 and 
+                     have already retired from regular employment.
+                </div>
+            </div>
+        </div>
+
+        <!-- Verification  -->
+        <div class="card shadow-lg border-0">
+            <div class="card-header py-3 text-center" style="background-color: #1a365d;">
+                <h4 class="mb-0 text-white">
+                    <i class="fas fa-search me-2"></i>Verify Refugee Status
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <form id="verifyForm">
+                    <div class="mb-4">
+                        <label for="individual_id" class="form-label fw-bold" style="color: #2d3748;">
+                            <i class="fas fa-id-card me-2" style="color: #2ecc71;"></i>Individual Number
+                        </label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text">
+                                <i class="fas fa-user-tag" style="color: #2ecc71;"></i>
+                            </span>
+                            <input type="text" 
+                                class="form-control" 
+                                id="individual_id" 
+                                name="individual_number"
+                                placeholder="Enter Individual Number (e.g., UGA-13975301)"
+                                required
+                                title="Enter the Individual Number from the database">
+                        </div>
+                        <div class="form-text mt-2">
+                            <i class="fas fa-info-circle me-1" style="color: #2ecc71;"></i>
+                            Enter the unique refugee individual number. Format: UGA-00000000
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="button" 
+                                id="verify-btn" 
+                                class="btn btn-primary btn-lg py-3 verify-case-btn">
+                            <i class="fas fa-check-circle me-2"></i>Verify Case
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Quick Help -->
+                <div class="mt-4 pt-3 border-top" style="border-color: #d4edda !important;">
+                    <h6 class="mb-3" style="color: #4a5568;">
+                        <i class="fas fa-question-circle me-2" style="color: #2ecc71;"></i>Need Help?
+                    </h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start mb-2">
+                                <i class="fas fa-lightbulb me-2 mt-1" style="color: #f39c12;"></i>
+                                <small style="color: #718096;">Format must be exactly: <code>UGA-00000000</code></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start mb-2">
+                                <i class="fas fa-database me-2 mt-1" style="color: #17a2b8;"></i>
+                                <small style="color: #718096;">System contains records from 2005 to present</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Information section -->
+        <div id="personalInfoContainer" class="card shadow-lg border-0 mt-4" style="display: none;">
+            <div class="card-header py-3 text-center" style="background-color: #1a365d;">
+                <h4 class="mb-0 text-white">
+                    <i class="fas fa-user-tie me-2"></i>Personal Information
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Personal Details -->
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-primary border-bottom pb-2">
+                                    <i class="fas fa-user me-2"></i>Personal Details
+                                </h6>
+                                <table class="table table-sm">
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-muted" style="width: 40%;">Individual No.:</th>
+                                            <td id="info-individual_number" class="fw-bold">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted">Full Name:</th>
+                                            <td id="info-full_name" class="fw-bold">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted">Age:</th>
+                                            <td id="info-age" class="fw-bold">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted">Gender:</th>
+                                            <td id="info-gender" class="fw-bold">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted">Date of Birth:</th>
+                                            <td id="info-date_of_birth" class="fw-bold">-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status Details -->
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title text-primary border-bottom pb-2">
+                                    <i class="fas fa-passport me-2"></i>Status Details
+                                </h6>
+                                <table class="table table-sm">
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-muted" style="width: 40%;">Legal Status:</th>
+                                            <td id="info-legal_status" class="fw-bold">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted">Country of Origin:</th>
+                                            <td id="info-country_of_origin" class="fw-bold">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted">Registration Date:</th>
+                                            <td id="info-registration_date" class="fw-bold">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted">Location/Address:</th>
+                                            <td id="info-location_address" class="fw-bold">-</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted">Family Size:</th>
+                                            <td id="info-family_size" class="fw-bold">-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NSSF Status Card -->
+                <div class="card border-warning mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h6 class="mb-0">
+                            <i class="fas fa-file-certificate me-2"></i>NSSF Status
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5 class="mb-1">NSSF Number:</h5>
+                                <div class="display-6 fw-bold text-success" id="info-nssf_number">
+                                    Not Issued
+                                </div>
+                                <small class="text-muted">National Social Security Fund Identification</small>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <div class="badge bg-info fs-6 p-3">
+                                    <i class="fas fa-shield-alt me-2"></i>Secure ID
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <button id="issueNssfBtn" class="btn btn-success btn-lg w-100 py-3">
+                            <i class="fas fa-file-certificate me-2"></i>Proceed and Issue NSSF Number
+                        </button>
+                        <div class="form-text text-center mt-2">
+                            Generate and assign NSSF number
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <button id="returnToMainBtn" class="btn btn-secondary btn-lg w-100 py-3">
+                            <i class="fas fa-home me-2"></i>Return to Main Page
+                        </button>
+                        <div class="form-text text-center mt-2">
+                            returns to main screen
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

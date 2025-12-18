@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <button id="backBtn" class="btn btn-secondary mb-3">
+        <i class="fas fa-arrow-left"></i> HOME
+    </button>
+
+    <h2>Case Details - Individual Number: <code>{{ case.individual_number }}</code></h2>
+    <!-- input for JS -->
+    <input type="hidden" id="individual_number" value="{{ case.individual_number }}">
+
+    <table class="table table-bordered mt-3">
+        <tr><th>Process Status</th><td>{{ case.process_status }}</td></tr>
+        <tr><th>Legal Status</th><td>{{ case.legal_status }}</td></tr>
+        <tr><th>NSSF Number</th><td id="nssf-number">{{ case.nssf_number or "Not Issued" }}</td></tr>
+        <tr><th>Full Name</th><td>{{ case.full_name }}</td></tr>
+        <tr><th>Family Group Number</th><td>{{ case.family_group_number }}</td></tr>
+        <tr><th>Family Size</th><td>{{ case.family_size }}</td></tr>
+        <tr><th>Age</th><td>{{ case.age }}</td></tr>
+        <tr><th>Gender</th><td>{{ case.gender }}</td></tr>
+        <tr><th>Country of Origin</th><td>{{ case.country_of_origin }}</td></tr>
+        <tr><th>Location Address</th><td>{{ case.location_address }}</td></tr>
+        <tr><th>Date of Birth</th><td>{{ case.date_of_birth }}</td></tr>
+        <tr><th>Registration Date</th><td>{{ case.registration_date }}</td></tr>
+    </table>
+
+    {% if eligible_nssf %}
+        <button id="verify-btn" class="btn btn-success">Generate NSSF</button>
+    {% endif %}
+
+    {% if eligible_benefits %}
+        <button id="benefits-btn" class="btn btn-primary">Process Benefits</button>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Back button
+    $('#homeBtn').click(() => window.location.href = '/');
+
+    const individual_number = $('#individual_number').val(); // primary key
+
+    // Verify and issue NSSF
+    $('#verify-btn').click(() => {
+        $.post('/issue-nssf', { individual_number: individual_number }, function(data) {
+            if (data.success) {
+                $('#nssf-number').text(data.nssf_number || "Not Issued");
+                Swal.fire({ icon: 'success', title: 'NSSF Issued!', text: data.message })
+                    .then(() => { if (data.redirect) window.location.href = data.redirect; });
+            } else {
+                Swal.fire({ icon: 'error', title: 'Verification Failed', text: data.message });
+            }
+        });
+    });
+
+    // Process benefits
+    $('#benefits-btn').click(() => {
+        $.post('/process-benefits', { individual_number: individual_number }, function(data) {
+            if (data.success) {
+                Swal.fire({ icon: 'success', title: 'Benefits Processed!', text: data.message })
+                    .then(() => { if (data.redirect) window.location.href = data.redirect; });
+            } else {
+                Swal.fire({ icon: 'error', title: 'Cannot Process Benefits', text: data.message });
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+<div id="personalInfoContainer" style="display: none; margin-top: 2rem;">
+    <h4>Personal Information</h4>
+    <table class="table table-bordered">
+        <tr><th>Individual Number</th><td id="info-individual_number"></td></tr>
+        <tr><th>Full Name</th><td id="info-full_name"></td></tr>
+        <tr><th>Family Group</th><td id="info-family_group_number"></td></tr>
+        <tr><th>Family Size</th><td id="info-family_size"></td></tr>
+        <tr><th>Age</th><td id="info-age"></td></tr>
+        <tr><th>Gender</th><td id="info-gender"></td></tr>
+        <tr><th>Country of Origin</th><td id="info-country_of_origin"></td></tr>
+        <tr><th>Legal Status</th><td id="info-legal_status"></td></tr>
+        <tr><th>Location</th><td id="info-location_address"></td></tr>
+        <tr><th>Date of Birth</th><td id="info-date_of_birth"></td></tr>
+        <tr><th>Registration Date</th><td id="info-registration_date"></td></tr>
+        <tr><th>NSSF Number</th><td id="info-nssf_number"></td></tr>
+    </table>
+    <div class="mt-3">
+        <button id="issueNssfBtn" class="btn btn-success">Proceed & Issue NSSF Number</button>
+        <button id="homeBtnInfo" class="btn btn-secondary">Home</button>
+    </div>
+</div>

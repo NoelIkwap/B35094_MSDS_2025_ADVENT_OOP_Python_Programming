@@ -1,0 +1,9 @@
+sqlalchemy
+python-dotenv
+jinja2
+oracledb
+Flask
+pandas
+cx-Oracle
+python-dotenv
+Flask-SQLAlchemy

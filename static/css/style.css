@@ -1,0 +1,433 @@
+/* Custom Styles for Refugee Verification System - Green  */
+
+/* Global Styles */
+body {
+    background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e8 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Primary Colors */
+:root {
+    --primary-green: #2ecc71;
+    --primary-green-dark: #27ae60;
+    --primary-green-light: #58d68d;
+    --navy-blue: #1a365d;
+    --light-green-bg: #f0f9f0;
+    --success-green: #2ecc71;
+    --info-teal: #17a2b8;
+    --warning-amber: #f39c12;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #d4edda;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(46, 204, 113, 0.1) !important;
+}
+
+/* Header Cards */
+.card-header.bg-primary {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%) !important;
+    border-bottom: none;
+}
+
+.card-header.bg-info {
+    background: linear-gradient(135deg, var(--info-teal) 0%, #138496 100%) !important;
+    border-bottom: none;
+}
+
+.card-header.bg-warning {
+    background: linear-gradient(135deg, var(--warning-amber) 0%, #e67e22 100%) !important;
+    border-bottom: none;
+}
+
+/* Button Styling - Green Theme */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-green-dark) 0%, #219653 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #145c27 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #545b62 100%);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #545b62 0%, #3d4348 100%);
+    transform: translateY(-2px);
+}
+
+.btn-lg {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* SPECIAL HOVER EFFECT FOR "VERIFY CASE" BUTTON */
+.verify-case-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    border: 2px solid #27ae60;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+    border-radius: 12px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Keep the sliding hover effect but in green */
+.verify-case-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #229954 0%, #27ae60 100%);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.verify-case-btn:hover:not(:disabled)::before {
+    left: 0;
+}
+
+.verify-case-btn:hover:not(:disabled) {
+    color: white;
+    border-color: #229954;
+    box-shadow: 0 10px 25px rgba(46, 204, 113, 0.5);
+    transform: translateY(-3px);
+}
+
+.verify-case-btn:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+/* Input Styling */
+.form-control {
+    border: 2px solid #d4edda;
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.form-control:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.25);
+    transform: translateY(-1px);
+}
+
+.input-group-text {
+    background-color: #f0f9f0;
+    border: 2px solid #d4edda;
+    border-right: none;
+    color: var(--primary-green-dark);
+}
+
+/* Table Styling */
+.table th {
+    background-color: #f0f9f0;
+    font-weight: 600;
+    color: #2d3748;
+    border-top: none;
+    border-bottom: 2px solid #d4edda;
+}
+
+.table td {
+    vertical-align: middle;
+    border-color: #e8f5e8;
+}
+
+.table tr:hover {
+    background-color: rgba(46, 204, 113, 0.05);
+}
+
+/* NSSF Status Card Special */
+.card.border-warning {
+    border: 2px solid var(--warning-amber) !important;
+}
+
+.card.border-warning .card-header {
+    background: linear-gradient(135deg, var(--warning-amber) 0%, #d68910 100%) !important;
+}
+
+/* Badge Styling */
+.badge.bg-info {
+    background: linear-gradient(135deg, var(--info-teal) 0%, #138496 100%) !important;
+}
+
+/* Alert Styling */
+.alert-info {
+    background-color: rgba(23, 162, 184, 0.1);
+    border-color: rgba(23, 162, 184, 0.3);
+    color: #0c5460;
+}
+
+.alert-warning {
+    background-color: rgba(243, 156, 18, 0.1);
+    border-color: rgba(243, 156, 18, 0.3);
+    color: #856404;
+}
+
+/* Animation for showing personal info */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#personalInfoContainer {
+    animation: fadeInUp 0.5s ease-out;
+    border: 2px solid var(--primary-green-light);
+}
+
+/* Form Text */
+.form-text.text-muted {
+    color: #718096 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .display-5 {
+        font-size: 2rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Loading Animation */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+    color: var(--primary-green);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Text Colors */
+.text-primary {
+    color: var(--primary-green-dark) !important;
+}
+
+.text-success {
+    color: var(--success-green) !important;
+}
+
+.text-warning {
+    color: var(--warning-amber) !important;
+}
+
+/* Background Utility Classes */
+.bg-light-green {
+    background-color: #f0f9f0 !important;
+}
+
+.bg-success-light {
+    background-color: rgba(46, 204, 113, 0.1) !important;
+}
+
+.bg-warning-light {
+    background-color: rgba(243, 156, 18, 0.1) !important;
+}
+
+/* Custom border for success state */
+.border-success-light {
+    border-color: rgba(46, 204, 113, 0.3) !important;
+}
+
+/* Welcome card styling */
+.card.border-0.shadow-lg {
+    border-left: 5px solid var(--primary-green) !important;
+}
+
+/* Display text colors */
+.display-6.fw-bold.text-success {
+    color: var(--primary-green-dark) !important;
+}
+
+/* Hover effects for cards */
+.card.bg-light:hover {
+    background-color: #e8f5e8 !important;
+}
+
+/* Custom dark blue background class */
+.bg-navy {
+    background-color: #1a365d !important;
+}
+/* NSSF Records Modal Styling */
+.nssf-records-popup {
+    max-width: 1200px !important;
+}
+
+.nssf-records-popup .swal2-html-container {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.nssf-records-popup table {
+    font-size: 0.9rem;
+}
+
+/* Dark Blue Table Header with White Text */
+.nssf-records-popup thead th {
+    position: sticky;
+    top: 0;
+    background-color: #1a365d !important; /* Dark Blue */
+    color: white !important; /* White Text */
+    z-index: 10;
+    border-bottom: 2px solid #2ecc71 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Table Body Styling */
+.nssf-records-popup tbody tr:hover {
+    background-color: rgba(46, 204, 113, 0.1) !important;
+}
+
+.nssf-records-popup tbody td {
+    border-color: #e8f5e8 !important;
+    vertical-align: middle;
+}
+
+/* Badge Styling in Table */
+.nssf-records-popup .badge.bg-success {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%) !important;
+    border: none;
+    padding: 5px 10px;
+    font-weight: 500;
+}
+
+.nssf-records-popup .badge.bg-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #545b62 100%) !important;
+    border: none;
+    padding: 5px 10px;
+    font-weight: 500;
+}
+
+/* Individual Number Styling */
+.nssf-records-popup code {
+    background-color: #f0f9f0;
+    color: #2ecc71;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    border: 1px solid #d4edda;
+}
+
+/* Alert Styling in Modal */
+.nssf-records-popup .alert-info {
+    background-color: rgba(23, 162, 184, 0.1);
+    border-color: rgba(23, 162, 184, 0.3);
+    color: #0c5460;
+    border-left: 4px solid #17a2b8;
+}
+
+/* View Records Button */
+#viewNssfRecordsBtn {
+    border: 2px solid #e2f3e2;
+    color: #e2f3e2;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+#viewNssfRecordsBtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #2ecc71;
+    color: #2ecc71;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+}
+
+#viewNssfRecordsBtn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+#viewNssfRecordsBtn i {
+    font-size: 1rem;
+}
+
+/* Modal Title Styling */
+.nssf-records-popup .swal2-title {
+    color: #1a365d !important;
+    font-weight: 600;
+    border-bottom: 3px solid #2ecc71;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nssf-records-popup {
+        width: 95% !important;
+        margin: 10px !important;
+    }
+    
+    .nssf-records-popup table {
+        font-size: 0.8rem;
+    }
+    
+    .nssf-records-popup thead th {
+        font-size: 0.75rem;
+        padding: 8px 4px !important;
+    }
+    
+    .nssf-records-popup tbody td {
+        padding: 8px 4px !important;
+    }
+    
+    #viewNssfRecordsBtn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
